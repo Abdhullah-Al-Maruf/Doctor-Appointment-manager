@@ -31,28 +31,11 @@ function LoginForm() {
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        try {
-            // Mock success
-            const error = null; 
-
-            if (error) {
-                toast.error(error.message || "Invalid credentials", { position: "top-center", autoClose: 3000 });
-                return;
-            }
-
-            toast.success("Login successful!", { position: "top-center", autoClose: 2000 });
-            router.push(callbackUrl);
-        } catch (err) {
-            toast.error("An unexpected error occurred.", { position: "top-center", autoClose: 3000 });
-        }
+    
     };
 
     const handleGoogle = async () => {
-        try {
-            console.log("Google Auth Triggered");
-        } catch (err) {
-            toast.error("Google login failed.");
-        }
+       
     };
 
     return (
@@ -100,7 +83,7 @@ function LoginForm() {
 
                 {/* Login Button */}
                 <div className="pt-2">
-                    <Button type="submit" className="w-full rounded-xl bg-gradient-to-r from-[#006b5f] to-[#14b8a6] text-white font-bold shadow-lg hover:shadow-teal-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 border border-white/10">
+                    <Button type="submit" className="w-full rounded-xl bg-linear-to-r from-[#006b5f] to-[#14b8a6] text-white font-bold shadow-lg hover:shadow-teal-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 border border-white/10">
                         <Check className="mr-2 size-5" /> Login
                     </Button>
                 </div>
