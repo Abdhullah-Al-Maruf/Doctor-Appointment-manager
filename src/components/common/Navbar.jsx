@@ -1,12 +1,13 @@
 "use client";
-// import { authClient } from "@/lib/auth-client"; // import the auth client
+import { authClient } from "@/lib/auth-client"; // import the auth client
 import { useState, useCallback } from "react";
 import NavLink from "./NavLink";
 import Link from "next/link";
 import clsx from "clsx";
 import { Avatar, Button } from "@heroui/react";
 import Script from "next/script";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { usePathname } from "next/navigation";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -16,6 +17,7 @@ const navItems = [
 
 const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -26,12 +28,12 @@ const NavigationBar = () => {
   }, []);
 
   // for avatar and conditional sign in signup showing we need the session data
-  //   const userData = authClient.useSession();
-  //   const user = userData.data?.user;
-  //   const handleLogout = async () => {
-  //     toast.info("Signout Successful");
-  //     await authClient.signOut();
-  //   };
+    const userData = authClient.useSession();
+    const user = userData.data?.user;
+    const handleLogout = async () => {
+      toast.info("Signout Successful");
+      await authClient.signOut();
+    };
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-white/0 backdrop-blur-md shadow-md">
@@ -72,7 +74,7 @@ const NavigationBar = () => {
 
         {/* Desktop Auth */}
 
-        {/* {!user && ( */}
+        {!user && (
         <div className="hidden md:flex items-center gap-4">
           <Link
             href="/signin"
@@ -90,8 +92,8 @@ const NavigationBar = () => {
             </Button>
           </Link>
         </div>
-        {/* )} */}
-        {/* {user && (
+        )}
+        {user && (
           <div className=" flex items-center ml-[120px]  gap-1 px-2 py-3 text-sm text-gray-700">
             <Link href={"/profile"}>
             
@@ -118,69 +120,128 @@ const NavigationBar = () => {
               
               <Button
                 onClick={handleLogout}
-                className=" hidden md:block bg-linear-to-b from-[#ff6b00] to-[#ff3d00] w-full"
+                className=" hidden md:block bg-linear-to-b from-[#006b5f] to-[#14b8a6] shadow-lg shadow-[#14b8a6]/50 w-full"
               >
                 Logout
               </Button>
             </div>
           </div>
-        )} */}
+        )} 
 
         {/* Mobile Toggle */}
         <button
           onClick={toggleMenu}
           aria-label="Toggle menu"
           aria-expanded={isOpen}
-          className="md:hidden p-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md transition"
+          className="md:hidden p-2 text-gray-600 hover:text-teal-600 hover:bg-teal-50 rounded-md transition"
         >
-          {isOpen ? "✕" : "☰"}
+          ☰
         </button>
       </div>
 
+      {/* Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden transition-opacity"
+          onClick={closeMenu}
+        />
+      )}
+
+      {/* Side Drawer */}
       <div
         className={clsx(
-          "md:hidden transition-all duration-300 overflow-hidden",
-          isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0",
+          "fixed top-0 right-0 h-screen w-[280px] bg-white/80 backdrop-blur-2xl shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden border-l border-white/30 flex flex-col",
+          isOpen ? "translate-x-0" : "translate-x-full",
         )}
       >
-        <div className="mx-4 mt-3 rounded-2xl border bg-white shadow-lg p-3 space-y-2">
-          {navItems.map((item) => (
-            <NavLink key={item.name} href={item.href} onClick={closeMenu}>
-              <div className="px-4 py-3 rounded-xl text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition flex justify-between">
-                {item.name}
-                <span>→</span>
-              </div>
-            </NavLink>
-          ))}
+        <div className="p-5 flex justify-end">
+          <button
+            onClick={closeMenu}
+            className="p-2 text-gray-600 hover:text-teal-600 hover:bg-teal-50/80 rounded-full transition-colors bg-white/50"
+          >
+            ✕
+          </button>
+        </div>
 
-          <div className="border-t my-2"></div>
-          {/* <div>
-            {!user && (
-              <div>
-                <Link
-                  href="/login"
-                  onClick={closeMenu}
-                  className="block px-4 py-3 rounded-xl hover:bg-orange-50 hover:text-orange-600"
+        <div className="px-5 flex flex-col gap-2 flex-grow overflow-y-auto mt-4">
+          {navItems.map((item) => {
+            const isActive =
+              item.href === "/"
+                ? pathname === "/"
+                : pathname?.startsWith(item.href);
+
+            return (
+              <Link key={item.name} href={item.href} onClick={closeMenu} className="block">
+                <div
+                  className={clsx(
+                    "px-4 py-3 rounded-xl font-medium transition-all duration-300 flex items-center justify-between group",
+                    isActive
+                      ? "bg-linear-to-r from-[#006b5f]/10 to-[#14b8a6]/10 text-[#006b5f] shadow-sm ring-1 ring-[#14b8a6]/20"
+                      : "text-gray-700 hover:bg-teal-50/80 hover:text-teal-700"
+                  )}
                 >
-                  Login
-                </Link>
+                  {item.name}
+                  <div
+                    className={clsx(
+                      "w-2 h-2 rounded-full transition-all duration-300",
+                      isActive
+                        ? "bg-[#14b8a6] scale-100"
+                        : "bg-transparent scale-0 group-hover:scale-100 group-hover:bg-teal-300"
+                    )}
+                  />
+                </div>
+              </Link>
+            );
+          })}
+        </div>
 
-                <Link href="/signup" onClick={closeMenu}>
-                  <Button className="bg-linear-to-b from-[#ff6b00] to-[#a04100] w-full">
-                    Register
-                  </Button>
-                </Link>
-              </div>
-            )}
-            {user && (
+        <div className="p-5 border-t border-gray-200/40 bg-white/30 backdrop-blur-md">
+          {!user ? (
+            <div className="flex flex-col gap-3">
+              <Link
+                href="/signin"
+                onClick={closeMenu}
+                className="block px-4 py-3 rounded-xl text-center font-medium text-gray-700 hover:bg-teal-50/80 hover:text-teal-700 transition-colors"
+              >
+                Login
+              </Link>
+              <Link href="/signup" onClick={closeMenu}>
+                <Button className="bg-linear-to-b from-[#006b5f] to-[#14b8a6] text-white shadow-lg shadow-[#14b8a6]/40 w-full border-0">
+                  Register
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-4">
+              <Link href={"/profile"} onClick={closeMenu}>
+                <div className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-teal-50/50 transition-colors">
+                  <Avatar>
+                    <Avatar.Image
+                      alt={user?.name || "User"}
+                      src={user?.image || undefined}
+                    />
+                    <Avatar.Fallback>
+                      {user?.name
+                        ? user.name.trim().split(/\s+/)[0][0].toUpperCase()
+                        : "U"}
+                    </Avatar.Fallback>
+                  </Avatar>
+                  <div className="text-sm font-semibold text-gray-800">
+                    {user.name?.split(" ")[0] || "User"}
+                  </div>
+                </div>
+              </Link>
               <Button
-                onClick={handleLogout}
-                className="bg-linear-to-b  from-[#ff6b00] to-[#ff3d00] w-full"
+                onClick={() => {
+                  handleLogout();
+                  closeMenu();
+                }}
+                className="bg-linear-to-b from-[#006b5f] to-[#14b8a6] text-white shadow-lg shadow-[#14b8a6]/40 w-full border-0"
               >
                 Logout
               </Button>
-            )}
-          </div> */}
+            </div>
+          )}
         </div>
       </div>
     </nav>

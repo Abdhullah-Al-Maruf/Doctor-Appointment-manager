@@ -1,6 +1,6 @@
 "use client";
 
-// import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import { Eye, EyeSlash, Lock, Person } from "@gravity-ui/icons";
 import {
   Button,
@@ -100,7 +100,6 @@ const RightSide = () => {
         name,
         image,
       });
-
       if (error) {
         throw new Error(error.message || "Signup failed");
       }
@@ -110,7 +109,7 @@ const RightSide = () => {
         autoClose: 3000,
       });
 
-      router.push("/login");
+      router.push("/signin");
     } catch (err) {
       console.error(err);
 
@@ -118,7 +117,9 @@ const RightSide = () => {
         position: "top-center",
         autoClose: 3000,
       });
+      
     }
+    
   };
 
   const handleGoogle = async () => {

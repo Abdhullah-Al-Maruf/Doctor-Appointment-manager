@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
-
+import { ToastContainer } from "react-toastify";
 
 const interFont = Inter({
   subsets: ["latin"],
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col relative">
         {/* 1. The Image Layer */}
         <div className="bg-fixed-medical" />
-
+        <ToastContainer />
         {/* Navbar sits on top of background */}
         <Navbar />
 
