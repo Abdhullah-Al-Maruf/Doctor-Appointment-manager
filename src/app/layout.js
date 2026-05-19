@@ -16,20 +16,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${interFont.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col relative">
-        
-  
         {/* 1. The Image Layer */}
         <div className="bg-fixed-medical" />
-        
 
         {/* Navbar sits on top of background */}
         <Navbar />
-        
+
         {/* Main Content scrolls OVER the background */}
-        <main className="relative z-10 w-full flex-grow">
-          {children}
-        </main>
-<Footer/>
+        <main className="relative z-10 w-full flex-grow">{children}</main>
       </body>
     </html>
   );
