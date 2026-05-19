@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${interFont.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col relative">
         
-        {/* --- FIXED BACKGROUND LAYERS --- */}
+  
         {/* 1. The Image Layer */}
         <div className="bg-fixed-medical" />
         

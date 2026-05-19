@@ -1,10 +1,13 @@
 import Banner from "@/components/common/Banner";
-import Image from "next/image";
+import SecondBanner from "@/components/common/SecondBanner";
+import SliderBanner from "@/components/SliderBanner";
+
 
 export default function Home() {
   return (
   <div>
-    <Banner/>
+   <SliderBanner/>
+  
   </div>
   );
 }
