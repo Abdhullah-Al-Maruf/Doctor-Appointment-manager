@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
 
 const interFont = Inter({
   subsets: ["latin"],
@@ -28,7 +29,7 @@ export default function RootLayout({ children }) {
         <main className="relative z-10 w-full flex-grow">
           {children}
         </main>
-
+<Footer/>
       </body>
     </html>
   );
