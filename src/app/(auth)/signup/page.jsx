@@ -3,7 +3,7 @@ import RightSide from "@/components/signupPageComponents/RightSide";
 
 const SignUpPage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 overflow-hidden relative">
+    <div className="w-full flex items-center justify-center p-4 overflow-hidden relative">
       
       {/* Background Blur Effects */}
       <div className="absolute top-[-120px] left-[-120px] w-[300px] h-[300px] bg-teal-500/30 blur-3xl rounded-full" />

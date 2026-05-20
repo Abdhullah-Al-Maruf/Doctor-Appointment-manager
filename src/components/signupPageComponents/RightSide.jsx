@@ -61,7 +61,7 @@ const RightSide = () => {
   const [passwordValue, setPasswordValue] = useState("");
 
   // Password Validation
-  const hasMinLength = passwordValue.length >= 8;
+  const hasMinLength = passwordValue.length >= 6;
   const hasNumber = /\d/.test(passwordValue);
   const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(passwordValue);
   const hasUppercase = /[A-Z]/.test(passwordValue);
@@ -129,6 +129,10 @@ const RightSide = () => {
       });
     } catch (error) {
       console.error("Google Auth Error:", error);
+      toast.error(error.message || "Google Auth Error", {
+        position: "top-center",
+        autoClose: 3000,
+      });
     }
   };
 
@@ -281,7 +285,7 @@ const RightSide = () => {
             <div className="mt-3 space-y-2 bg-gray-50/50 p-3 rounded-lg border border-gray-100">
               <ValidationItem
                 isValid={hasMinLength}
-                text="8+ characters"
+                text="6+ characters"
               />
 
               <ValidationItem

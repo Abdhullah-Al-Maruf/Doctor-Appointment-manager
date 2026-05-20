@@ -94,7 +94,7 @@ const NavigationBar = () => {
         </div>
         )}
         {user && (
-          <div className=" flex items-center ml-[120px]  gap-1 px-2 py-3 text-sm text-gray-700">
+          <div className="flex items-center md:ml-6 gap-1 px-2 py-3 text-sm text-gray-700">
             <Link href={"/profile"}>
             
            <div>
@@ -102,6 +102,7 @@ const NavigationBar = () => {
               <Avatar.Image
                 alt={user?.name || "User"}
                 src={user?.image || undefined}
+                referrerPolicy="no-referrer"
               />
 
               <Avatar.Fallback>
@@ -150,8 +151,8 @@ const NavigationBar = () => {
       {/* Side Drawer */}
       <div
         className={clsx(
-          "fixed top-0 right-0 h-screen w-[280px] bg-white/80 backdrop-blur-2xl shadow-2xl z-50 transform transition-transform duration-300 ease-in-out md:hidden border-l border-white/30 flex flex-col",
-          isOpen ? "translate-x-0" : "translate-x-full",
+          "fixed top-0 right-0 h-screen w-[280px] bg-white/80 backdrop-blur-2xl shadow-2xl z-50 transition-all duration-300 ease-in-out md:hidden border-l border-white/30 flex flex-col",
+          isOpen ? "translate-x-0 visible opacity-100" : "translate-x-full invisible opacity-0",
         )}
       >
         <div className="p-5 flex justify-end">

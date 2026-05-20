@@ -29,13 +29,13 @@ const SecondBanner = () => {
           </div>
 
           {/* Headline */}
-          <h1 className="text-[48px] leading-[1.2] tracking-[-0.02em] font-bold text-[#191c1e] leading-tight">
+          <h1 className="text-[32px] sm:text-[40px] md:text-[48px] leading-[1.2] tracking-[-0.02em] font-bold text-[#191c1e]">
             Clinical Excellence, <br />
             <span className="text-[#14b8a6]">Modern Comfort</span>
           </h1>
 
           {/* Description */}
-          <p className="text-[18px] leading-[1.6] text-[#3c4947] max-w-xl">
+          <p className="text-[15px] sm:text-[16px] md:text-[18px] leading-[1.6] text-[#3c4947] max-w-xl">
             Step into the future of healthcare. Access world-class medical
             facilities and top-tier specialists from the comfort of your home
             with our integrated booking system.
@@ -52,28 +52,28 @@ const SecondBanner = () => {
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-3 gap-3 pt-10 max-w-2xl">
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-10 max-w-2xl">
             <div className="space-y-1">
-              <div className="text-[24px] leading-[1.4] font-semibold text-[#191c1e]">
+              <div className="text-[20px] sm:text-[24px] leading-[1.4] font-semibold text-[#191c1e]">
                 500+
               </div>
-              <div className="text-[12px] leading-[1.4] font-semibold text-[#3c4947]">
+              <div className="text-[11px] sm:text-[12px] leading-[1.4] font-semibold text-[#3c4947]">
                 Verified Doctors
               </div>
             </div>
-            <div className="space-y-1 border-x border-[#bbcac6]/30 px-6">
-              <div className="text-[24px] leading-[1.4] font-semibold text-[#191c1e]">
+            <div className="space-y-1 border-x border-[#bbcac6]/30 px-2 sm:px-6">
+              <div className="text-[20px] sm:text-[24px] leading-[1.4] font-semibold text-[#191c1e]">
                 4.9/5
               </div>
-              <div className="text-[12px] leading-[1.4] font-semibold text-[#3c4947]">
+              <div className="text-[11px] sm:text-[12px] leading-[1.4] font-semibold text-[#3c4947]">
                 Patient Rating
               </div>
             </div>
             <div className="space-y-1">
-              <div className="text-[24px] leading-[1.4] font-semibold text-[#191c1e]">
+              <div className="text-[20px] sm:text-[24px] leading-[1.4] font-semibold text-[#191c1e]">
                 24/7
               </div>
-              <div className="text-[12px] leading-[1.4] font-semibold text-[#3c4947]">
+              <div className="text-[11px] sm:text-[12px] leading-[1.4] font-semibold text-[#3c4947]">
                 Active Support
               </div>
             </div>

@@ -198,15 +198,15 @@ function LoginForm() {
 const LoginPage = () => {
   return (
     // 1. Page Background (Clean Neutral)
-    <main className="min-h-screen w-full flex items-center justify-center p-4 md:p-8  relative overflow-hidden">
+    <main className="w-full flex items-center justify-center p-4 md:p-8 relative overflow-hidden">
       {/* Optional: Subtle ambient background blobs for depth behind the glass card */}
       <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-[#14b8a6]/20 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-[#006b5f]/20 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
       {/* 2. THE MASTER GLASS CARD (Contains Both Image and Form) */}
-      <div className="relative w-full max-w-6xl min-h-[600px] md:h-[700px] bg-white/10 backdrop-blur-2xl border border-white/20 shadow-2xl rounded-[40px] overflow-hidden flex flex-col md:flex-row">
+      <div className="relative w-full max-w-6xl min-h-[600px] lg:h-[700px] bg-white/10 backdrop-blur-2xl border border-white/20 shadow-2xl rounded-[40px] overflow-hidden flex flex-col lg:flex-row">
         {/* LEFT SIDE: Hero Image & Content */}
-        <section className="hidden md:flex md:w-1/2 relative items-end justify-start p-12 overflow-hidden group">
+        <section className="hidden lg:flex lg:w-1/2 relative items-end justify-start p-12 overflow-hidden group">
           {/* The Heart Image */}
           <Image
             src="/heart.png"
@@ -251,9 +251,9 @@ const LoginPage = () => {
         </section>
 
         {/* RIGHT SIDE: Transparent Form Area */}
-        <section className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12 relative bg-white/5">
+        <section className="w-full lg:w-1/2 flex items-center justify-center p-6 lg:p-12 relative bg-white/5">
           {/* Subtle separator line between image and form on desktop */}
-          <div className="hidden md:block absolute left-0 top-10 bottom-10 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
+          <div className="hidden lg:block absolute left-0 top-10 bottom-10 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
 
           <Suspense
             fallback={
