@@ -22,13 +22,20 @@ const CommonLayout = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    // Show loader on page entry / pathname change
-    setShowLoader(true);
-    setIsFadingOut(false);
-
     // Determine if this is a true initial load using window reference to handle layout remounts
     const isInitial = typeof window !== 'undefined' ? !window._hasEnteredSite : true;
     const isHomepage = pathname === '/';
+
+    // If we've already entered the site and the user goes back to the homepage, do not trigger loading
+    if (isHomepage && !isInitial) {
+      setShowLoader(false);
+      setIsFadingOut(false);
+      return;
+    }
+
+    // Show loader on page entry / pathname change
+    setShowLoader(true);
+    setIsFadingOut(false);
     
     // Homepage initial entry gets 3 seconds, all other loads/transitions get 2.2 seconds (matching the 2-second progress bar)
     const totalDuration = (isInitial && isHomepage) ? 3000 : 2200;

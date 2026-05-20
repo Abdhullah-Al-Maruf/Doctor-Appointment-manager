@@ -11,7 +11,7 @@ export default function Loading({ isFullScreen = true }) {
   useEffect(() => {
     setIsMounted(true);
     const startTime = Date.now();
-    const duration = 2000; // reach 100% in 2.6 seconds
+    const duration = 1500; // reach 100% in 1.5 seconds
 
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime;

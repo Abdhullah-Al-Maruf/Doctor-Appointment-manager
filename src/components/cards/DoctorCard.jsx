@@ -38,7 +38,7 @@ const DoctorCard = () => {
   } = data;
 
   // Simple availability logic for demo
-  const isAvailableToday = true;
+  // const isAvailableToday = true;
 
   return (
     <div className="group relative w-full max-w-sm bg-white/30 rounded-3xl overflow-hidden border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300">
@@ -106,7 +106,7 @@ const DoctorCard = () => {
 
         {/* Right: Actions */}
         <div className="flex items-center gap-2">
-          <Link href={`/doctors/${id}`} className="w-full">
+          <Link href={`/all-appointments/${id}`} className="w-full">
             <Button
               variant="solid"
               className="bg-teal-500 hover:bg-teal-600 text-white rounded-xl px-6 py-2 text-sm font-semibold shadow-sm transition-colors"
