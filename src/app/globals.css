@@ -1,5 +1,6 @@
 @import "tailwindcss";
-@import "@heroui/styles"; 
+@import "@heroui/styles";
+
 /* Custom Utility for Fixed Background */
 .bg-fixed-medical {
   position: fixed;
@@ -8,7 +9,8 @@
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background-image: url('/screen.png'); /* Ensure this file is in public/ */
+  background-image: url('/screen.png');
+  /* Ensure this file is in public/ */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

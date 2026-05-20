@@ -22,11 +22,10 @@ import { useRouter } from "next/navigation";
 const ValidationItem = ({ isValid, text }) => (
   <div className="flex items-center gap-2">
     <div
-      className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all duration-200 ${
-        isValid
+      className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all duration-200 ${isValid
           ? "bg-teal-500 border-teal-500 text-white"
           : "border-gray-300 bg-transparent"
-      }`}
+        }`}
     >
       {isValid && (
         <svg
@@ -45,9 +44,8 @@ const ValidationItem = ({ isValid, text }) => (
     </div>
 
     <span
-      className={`text-sm transition-colors duration-200 ${
-        isValid ? "text-teal-600 font-medium" : "text-gray-500"
-      }`}
+      className={`text-sm transition-colors duration-200 ${isValid ? "text-teal-600 font-medium" : "text-gray-500"
+        }`}
     >
       {text}
     </span>
@@ -108,7 +106,8 @@ const RightSide = () => {
         position: "top-center",
         autoClose: 3000,
       });
-
+      // signout the user  for login
+      await authClient.signOut();
       router.push("/signin");
     } catch (err) {
       console.error(err);
@@ -117,9 +116,9 @@ const RightSide = () => {
         position: "top-center",
         autoClose: 3000,
       });
-      
+
     }
-    
+
   };
 
   const handleGoogle = async () => {
@@ -138,9 +137,9 @@ const RightSide = () => {
 
   return (
     <div className="w-full flex items-center justify-center min-h-[calc(100vh-80px)]  p-4">
-        <div></div>
+      <div></div>
       <div className="w-full max-w-[480px]  border border-gray-100 shadow-2xl rounded-3xl p-8 sm:p-10">
-        
+
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">

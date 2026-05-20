@@ -28,15 +28,24 @@ const NavigationBar = () => {
   }, []);
 
   // for avatar and conditional sign in signup showing we need the session data
-    const userData = authClient.useSession();
-    const user = userData.data?.user;
-    const handleLogout = async () => {
-      toast.info("Signout Successful");
+  const userData = authClient.useSession();
+  const user = userData.data?.user;
+
+  if (pathname?.startsWith('/dashboard')) {
+    return null;
+  }
+
+  const handleLogout = async () => {
+    
+    toast.success("Logout successful", {
+      position: "top-center",
+      autoClose: 1000,
+    });
       await authClient.signOut();
     };
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-white/0 backdrop-blur-md shadow-md">
+   <nav className="sticky top-0 z-50 w-full border-b bg-white/0 backdrop-blur-md shadow-md h-16">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
 
@@ -95,7 +104,7 @@ const NavigationBar = () => {
         )}
         {user && (
           <div className="flex items-center md:ml-6 gap-1 px-2 py-3 text-sm text-gray-700">
-            <Link href={"/profile"}>
+            <Link href={"/dashboard/profile"}>
             
            <div>
      <Avatar>
@@ -214,7 +223,7 @@ const NavigationBar = () => {
             </div>
           ) : (
             <div className="flex flex-col gap-4">
-              <Link href={"/profile"} onClick={closeMenu}>
+              <Link href={"/dashboard/profile"} onClick={closeMenu}>
                 <div className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-teal-50/50 transition-colors">
                   <Avatar>
                     <Avatar.Image

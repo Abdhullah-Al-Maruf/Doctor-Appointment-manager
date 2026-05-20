@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Clock, Heart, MapPin, Star } from "@gravity-ui/icons";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 
+
 const data = {
   id: "d10",
   name: "Dr. Anika Sultana",
@@ -111,7 +112,7 @@ const DoctorCard = () => {
               variant="solid"
               className="bg-teal-500 hover:bg-teal-600 text-white rounded-xl px-6 py-2 text-sm font-semibold shadow-sm transition-colors"
             >
-              Book Now
+              View Details
             </Button>
           </Link>
           
