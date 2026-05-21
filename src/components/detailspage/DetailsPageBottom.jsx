@@ -1,7 +1,8 @@
 import React from "react";
 import { CalendarCheck, MapPin, HelpCircle } from "lucide-react";
-import { AppointmentModal } from "../AppointmentModal";
+
 import { TbCoinTaka } from "react-icons/tb";
+import { AppointmentModal } from "../AppointmentModal";
 
 const DetailsPageBottom = ({ doctorData }) => {
   // Safety check: Get the first available day and its first slot
@@ -134,8 +135,8 @@ const DetailsPageBottom = ({ doctorData }) => {
                   </div>
                 </div>
               </div>
-
-              <AppointmentModal />
+           
+              <AppointmentModal docName={doctorData.name} />
 
               <p className="text-center text-[10px] mt-4 text-teal-100/40 uppercase tracking-wider">
                 Secure & Instant Confirmation

@@ -1,34 +1,26 @@
 "use client";
 
-import { Stethoscope } from "@gravity-ui/icons";
-import {
-  Calendar,
-  Clock,
-  Mail,
-  Phone,
-  User,
-  Users,
-} from "lucide-react";
+import { useState } from "react";
+import { X } from "lucide-react";
+import { toast } from "react-toastify";
 
-import {
-  Button,
-  Input,
-  Label,
-  Modal,
-  Surface,
-  TextField,
-} from "@heroui/react";
+export function AppointmentModal({ docName }) {
+  const [isOpen, setIsOpen] = useState(false);
 
-export function AppointmentModal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
+    
+    // Add doctor name dynamically
+    data.doctorName = docName;
+    
 
+    
     try {
-      const response = await fetch("/api/appointments", {
-        method: "POST",
+      const response = await fetch('http://localhost:5000/appointments', {
+        method: 'POST',
         headers: {
           "Content-Type": "application/json",
         },
@@ -36,176 +28,64 @@ export function AppointmentModal() {
       });
 
       if (response.ok) {
-        console.log("Appointment saved successfully");
+      toast.success("Appointment booked successfully!");
+        setIsOpen(false);
+        e.target.reset();
       }
     } catch (error) {
-      console.error("Error saving appointment:", error);
+      toast.error("Failed to book appointment.");
     }
   };
 
-  const inputGlassStyle = `
-    bg-white/20
-    dark:bg-zinc-800/30
-    backdrop-blur-xl
-    border
-    border-white/20
-    dark:border-zinc-700/30
-    shadow-md
-    hover:bg-white/30
-    focus-within:bg-white/30
-    focus:outline-none
-    transition-all
-    rounded-xl
-    text-default-900
-    dark:text-white
-    placeholder:text-default-500
-  `;
-
   return (
-    <Modal>
-      {/* Trigger Button */}
-      <Button
-        variant="secondary"
-        className="bg-white text-teal-800 hover:bg-teal-700 hover:text-white shadow-lg rounded-xl"
+    <>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="w-full bg-white text-teal-800 hover:bg-teal-700 hover:text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition-all duration-200"
       >
         Book Appointment
-      </Button>
+      </button>
 
-      {/* Backdrop */}
-      <Modal.Backdrop
-        variant="blur"
-        className="bg-black/30 backdrop-blur-md dark:bg-black/40"
-      >
-        <Modal.Container placement="center">
-          {/* Modal */}
-          <Modal.Dialog
-            className="
-              sm:max-w-2xl
-              rounded-3xl
-              bg-white/50
-              dark:bg-zinc-900/30
-              backdrop-blur-2xl
-              border
-              border-white/20
-              dark:border-zinc-700/20
-              shadow-2xl
-              overflow-hidden
-            "
-          >
-            <Modal.CloseTrigger />
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
 
-            {/* Header */}
-            <Modal.Header className="pb-3">
-              <Modal.Icon
-                className="
-                  bg-teal-500/20
-                  text-teal-600
-                  backdrop-blur-md
-                  border
-                  border-white/20
-                "
-              >
-                <Stethoscope className="size-5" />
-              </Modal.Icon>
+          <div className="relative w-full max-w-2xl bg-white/40 dark:bg-zinc-900/55 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/20 dark:border-zinc-700/20 max-h-[90vh] overflow-y-auto">
+            
+            <button onClick={() => setIsOpen(false)} className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
+              <X className="w-5 h-5 text-gray-500" />
+            </button>
 
-              <div>
-                <Modal.Heading className="text-xl font-bold">
-                  Book an Appointment
-                </Modal.Heading>
-
-                <p className="mt-1 text-sm text-default-600 dark:text-default-400">
-                  Schedule your visit with Dr. Ayesha Rahman.
-                </p>
+            <div className="p-6 pb-3 border-b border-gray-200 dark:border-zinc-700">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-teal-500/20 flex items-center justify-center text-teal-600">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Book an Appointment</h2>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Schedule your visit with {docName}</p>
+                </div>
               </div>
-            </Modal.Header>
+            </div>
 
-            {/* Body */}
-            <Modal.Body className="p-6">
-              <Surface
-                className="
-                  rounded-2xl
-                  bg-white/20
-                  dark:bg-zinc-900/20
-                  backdrop-blur-2xl
-                  border
-                  border-white/20
-                  dark:border-zinc-700/20
-                  shadow-xl
-                  p-5
-                "
-              >
-                <form
-                  id="appointment-form"
-                  onSubmit={handleSubmit}
-                  className="grid grid-cols-1 md:grid-cols-2 gap-5"
-                >
-                  {/* Doctor */}
-                  <TextField
-                    className="w-full md:col-span-2"
-                    name="doctorName"
-                    variant="secondary"
-                    defaultValue="Dr. Ayesha Rahman"
-                    isReadOnly
-                  >
-                    <Label>
-                      <Stethoscope className="size-4 inline mr-2" />
-                      Doctor
-                    </Label>
+            <div className="p-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Doctor</label>
+                  <input type="text" value={docName || ""} readOnly className="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 text-gray-900 dark:text-white cursor-not-allowed opacity-75" />
+                </div>
 
-                    <Input
-                      placeholder="Doctor name"
-                      className={inputGlassStyle}
-                    />
-                  </TextField>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Patient Name</label>
+                    <input type="text" name="patientName" required placeholder="Enter patient name" className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-zinc-800/50 backdrop-blur-xl border border-gray-200 dark:border-zinc-700 text-gray-900 dark:text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all" />
+                  </div>
 
-                  {/* Patient Name */}
-                  <TextField
-                    className="w-full"
-                    name="patientName"
-                    type="text"
-                    variant="secondary"
-                    isRequired
-                  >
-                    <Label>
-                      <User className="size-4 inline mr-2" />
-                      Patient Name
-                    </Label>
-
-                    <Input
-                      placeholder="Enter patient name"
-                      className={inputGlassStyle}
-                    />
-                  </TextField>
-
-                  {/* Gender */}
-                  <div className="flex flex-col gap-2">
-                    <Label className="text-sm font-medium">
-                      <Users className="size-4 inline mr-2" />
-                      Gender
-                    </Label>
-
-                    <select
-                      name="gender"
-                      required
-                      className="
-                        w-full
-                        h-11
-                        px-3
-                        rounded-xl
-                        bg-white/0
-                        dark:bg-zinc-800/30
-                        backdrop-blur-xl
-                        border
-                        border-white/20
-                        dark:border-zinc-700/30
-                        shadow-md
-                        hover:bg-white/30
-                        focus:bg-white/10
-                        focus:outline-none
-                        transition-all
-                        text-sm
-                      "
-                    >
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Gender</label>
+                    <select name="gender" required className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-zinc-800/50 backdrop-blur-xl border border-gray-200 dark:border-zinc-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all">
                       <option value="">Select gender</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
@@ -213,110 +93,40 @@ export function AppointmentModal() {
                     </select>
                   </div>
 
-                  {/* Phone */}
-                  <TextField
-                    className="w-full"
-                    name="phone"
-                    type="tel"
-                    variant="secondary"
-                    isRequired
-                  >
-                    <Label>
-                      <Phone className="size-4 inline mr-2" />
-                      Phone Number
-                    </Label>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
+                    <input type="tel" name="phone" required placeholder="Enter phone number" className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-zinc-800/50 backdrop-blur-xl border border-gray-200 dark:border-zinc-700 text-gray-900 dark:text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all" />
+                  </div>
 
-                    <Input
-                      placeholder="Enter phone number"
-                      className={inputGlassStyle}
-                    />
-                  </TextField>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                    <input type="email" name="userEmail" required placeholder="Enter email address" className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-zinc-800/50 backdrop-blur-xl border border-gray-200 dark:border-zinc-700 text-gray-900 dark:text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all" />
+                  </div>
 
-                  {/* Email */}
-                  <TextField
-                    className="w-full md:col-span-2"
-                    name="userEmail"
-                    type="email"
-                    variant="secondary"
-                    isRequired
-                  >
-                    <Label>
-                      <Mail className="size-4 inline mr-2" />
-                      Email
-                    </Label>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Appointment Date</label>
+                    <input type="date" name="appointmentDate" required className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-zinc-800/50 backdrop-blur-xl border border-gray-200 dark:border-zinc-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all" />
+                  </div>
 
-                    <Input
-                      placeholder="Enter email address"
-                      className={inputGlassStyle}
-                    />
-                  </TextField>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Appointment Time</label>
+                    <input type="time" name="appointmentTime" required className="w-full px-4 py-3 rounded-xl bg-white/50 dark:bg-zinc-800/50 backdrop-blur-xl border border-gray-200 dark:border-zinc-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all" />
+                  </div>
+                </div>
 
-                  {/* Date */}
-                  <TextField
-                    className="w-full"
-                    name="appointmentDate"
-                    type="date"
-                    variant="secondary"
-                    isRequired
-                  >
-                    <Label>
-                      <Calendar className="size-4 inline mr-2" />
-                      Appointment Date
-                    </Label>
-
-                    <Input className={inputGlassStyle} />
-                  </TextField>
-
-                  {/* Time */}
-                  <TextField
-                    className="w-full"
-                    name="appointmentTime"
-                    type="time"
-                    variant="secondary"
-                    isRequired
-                  >
-                    <Label>
-                      <Clock className="size-4 inline mr-2" />
-                      Appointment Time
-                    </Label>
-
-                    <Input className={inputGlassStyle} />
-                  </TextField>
-
-                  {/* Footer */}
-                  <Modal.Footer className="md:col-span-2 pt-3">
-                    <Button
-                      slot="close"
-                  
-                      className="
-                       border bg-transparent border-green-800 text-teal-800
-                      "
-                    >
-                      Cancel
-                    </Button>
-
-                    <Button
-                      type="submit"
-                      form="appointment-form"
-                      className="
-                        rounded-xl
-                        bg-teal-600
-                        hover:bg-teal-700
-                        text-white
-                        font-semibold
-                        shadow-lg
-                        shadow-teal-500/30
-                      "
-                    >
-                      Confirm Appointment
-                    </Button>
-                  </Modal.Footer>
-                </form>
-              </Surface>
-            </Modal.Body>
-          </Modal.Dialog>
-        </Modal.Container>
-      </Modal.Backdrop>
-    </Modal>
+                <div className="flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-zinc-700">
+                  <button type="button" onClick={() => setIsOpen(false)} className="px-6 py-3 rounded-xl border-2 border-teal-600 text-teal-600 font-semibold hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-all">
+                    Cancel
+                  </button>
+                  <button type="submit" className="px-6 py-3 rounded-xl bg-teal-600 text-white font-semibold hover:bg-teal-700 shadow-lg shadow-teal-500/30 transition-all">
+                    Confirm Appointment
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

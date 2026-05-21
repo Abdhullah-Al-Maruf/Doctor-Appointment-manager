@@ -1,31 +1,10 @@
 "use client"
 import { Avatar, Button } from '@heroui/react';
-
 import { CalendarDays, Star } from 'lucide-react';
-
-
 import React from "react";
 import { AppointmentModal } from '../AppointmentModal';
-//  this data will remove when get data from server
-const data = {
-  id: "d10",
-  name: "Dr. Anika Sultana",
-  specialty: "Oncologist",
-  image: "https://images.pexels.com/photos/5215020/pexels-photo-5215020.jpeg",
-  experience: "11 years",
-  availability: [
-    { day: "Sunday,", slots: ["10:00 AM - 05:00 PM", "05:00 PM - 07:00 PM"] },
-    { day: "Wednesday", slots: ["10:00 AM - 05:00 PM", "05:00 PM - 07:00 PM"] },
-  ],
-  rating: 4.9,
-  reviews: 180,
-  hospital: "National Cancer Institute",
-  location: "Mohakhali, Dhaka",
-  fee: 1500,
-};
 
 const DoctorIntroCard = ({ doctorData }) => {
-
   const {
     image,
     specialty,
@@ -34,25 +13,24 @@ const DoctorIntroCard = ({ doctorData }) => {
     rating,
     reviews,
     fee
-  } = doctorData || data;
+  } = doctorData;
 
-  // Get the next available day simply
   const nextAvailable = availability[0];
 
   return (
     <div className="mt-8">
-      <div className=" max-w-7xl  rounded-md mx-auto border bg-white/0 backdrop-blur-md shadow-lg">
-        <div className=" px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl rounded-md mx-auto border bg-white/0 backdrop-blur-md shadow-lg">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 gap-4">
 
             {/* Left Section: Doctor Info */}
             <div className="flex items-center gap-4 min-w-0">
               <Avatar>
                 <Avatar.Image
-
                   alt={name}
                   src={image} 
-                  className='object-cover'/>
+                  className='object-cover'
+                />
                 <Avatar.Fallback>JD</Avatar.Fallback>
               </Avatar>
 
@@ -92,7 +70,7 @@ const DoctorIntroCard = ({ doctorData }) => {
                 <span className="text-xs text-default-400">Consultation Fee</span>
                 <span className="text-lg font-bold text-foreground">৳{fee}</span>
               </div>
-              <AppointmentModal />
+
             </div>
 
           </div>
