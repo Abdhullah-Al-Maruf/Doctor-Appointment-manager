@@ -5,6 +5,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Xmark } from "@gravity-ui/icons";
 import { CgUserAdd } from "react-icons/cg";
+import { toast } from "react-toastify";
 
 
 export function UpdateProfileModal({ isOpen = true, onClose, image, name }) {
@@ -33,8 +34,10 @@ export function UpdateProfileModal({ isOpen = true, onClose, image, name }) {
     });
 
     if (onClose) onClose();
+    toast.success("Profile updated successfully!");
   };
-
+ 
+  
   if (!isOpen) return null;
 
   return (
