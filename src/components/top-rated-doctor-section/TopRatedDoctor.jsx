@@ -1,7 +1,7 @@
 import { Button } from "@heroui/react";
 import Link from "next/link";
 import React from "react";
-import DoctorCard from "../cards/DoctorCard";
+
 
 const TopRatedDoctor = () => {
   return (
@@ -11,7 +11,7 @@ const TopRatedDoctor = () => {
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-100/40 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className=" mb-16">
+        <div className="ma mb-16">
           <span className="text-teal-600 font-semibold tracking-wider text-sm uppercase mb-2 block">
           Meet our
           </span>
@@ -26,7 +26,7 @@ const TopRatedDoctor = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-         <DoctorCard/>
+       
         </div>
       </div>
     </section>

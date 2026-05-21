@@ -7,24 +7,8 @@ import { Clock, Heart, MapPin, Star } from "@gravity-ui/icons";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 
 
-const data = {
-  id: "d10",
-  name: "Dr. Anika Sultana",
-  specialty: "Oncologist",
-  image: "https://images.pexels.com/photos/5215020/pexels-photo-5215020.jpeg",
-  experience: "11 years",
-  availability: [
-    { day: "Sunday", slots: ["10:00 AM - 05:00 PM", "05:00 PM - 07:00 PM"] },
-    { day: "Wednesday", slots: ["10:00 AM - 05:00 PM", "05:00 PM - 07:00 PM"] }
-  ],
-  rating: 4.9,
-  reviews: 180,
-  hospital: "National Cancer Institute",
-  location: "Mohakhali, Dhaka",
-  fee: 1500
-};
 
-const DoctorCard = () => {
+const DoctorCard = ({data}) => {
   const {
     image,
     name,
@@ -35,7 +19,7 @@ const DoctorCard = () => {
     rating,
     reviews,
     fee,
-    id
+    _id
   } = data;
 
   // Simple availability logic for demo
@@ -107,7 +91,7 @@ const DoctorCard = () => {
 
         {/* Right: Actions */}
         <div className="flex items-center gap-2">
-          <Link href={`/all-appointments/${id}`} className="w-full">
+          <Link href={`/all-appointments/${_id}`} className="w-full">
             <Button
               variant="solid"
               className="bg-teal-500 hover:bg-teal-600 text-white rounded-xl px-6 py-2 text-sm font-semibold shadow-sm transition-colors"
