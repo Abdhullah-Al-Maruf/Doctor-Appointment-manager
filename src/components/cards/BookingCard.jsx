@@ -13,6 +13,8 @@ import {
 import { Button, Chip, Separator } from '@heroui/react';
 import { TrashBin } from "@gravity-ui/icons";
 import { UpdateAppointmentModal } from "../UpdateAppointmentModal";
+import { deleteAppointment } from "@/utils/actions";
+import { toast } from "react-toastify";
 
 // Helper to format date nicely
 const formatDate = (dateString) => {
@@ -37,6 +39,16 @@ const BookingCard = ({ booking }) => {
   // Default status if not provided in API
   const status = booking.status || "Confirmed"; 
 
+// delete server action
+
+  const handleDelete = async() => {
+  try {
+      await deleteAppointment(_id);
+      toast.success("Deleted successfully");
+    } catch (error) {
+      toast.error("Delete failed");
+    }
+  }
   return (
     <div className="w-full bg-white/60 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col sm:flex-row group">
       
@@ -124,7 +136,7 @@ const BookingCard = ({ booking }) => {
      <UpdateAppointmentModal  id={_id} initialData={booking}/>
           
           <Button 
-  
+          onClick={handleDelete}
             variant="danger" 
            
             className="w-full bg-transparent text-red-500 border border-red-600 font-medium text-danger-600 hover:bg-danger-50/50"

@@ -15,3 +15,19 @@ export async function updateAppointment(id, formData) {
 // 
 revalidatePath("/dashboard/my-booking");
 }
+
+
+
+// app/actions/deleteAppointment.js
+
+export async function deleteAppointment(id) {
+  const res = await fetch(`http://localhost:5000/appointments/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!res.ok) {
+    throw new Error("Delete failed");
+  }
+
+  revalidatePath("/dashboard/my-booking");
+}
