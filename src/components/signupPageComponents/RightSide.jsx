@@ -23,8 +23,8 @@ const ValidationItem = ({ isValid, text }) => (
   <div className="flex items-center gap-2">
     <div
       className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all duration-200 ${isValid
-          ? "bg-teal-500 border-teal-500 text-white"
-          : "border-gray-300 bg-transparent"
+        ? "bg-teal-500 border-teal-500 text-white"
+        : "border-gray-300 bg-transparent"
         }`}
     >
       {isValid && (
