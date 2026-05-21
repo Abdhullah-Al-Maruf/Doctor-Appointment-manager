@@ -66,7 +66,7 @@ export function AppointmentModal() {
       {/* Trigger Button */}
       <Button
         variant="secondary"
-        className="bg-teal-600 text-white hover:bg-teal-700 shadow-lg rounded-xl"
+        className="bg-white text-teal-800 hover:bg-teal-700 hover:text-white shadow-lg rounded-xl"
       >
         Book Appointment
       </Button>

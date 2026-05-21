@@ -24,9 +24,17 @@ const data = {
   fee: 1500,
 };
 
-const DoctorIntroCard = () => {
+const DoctorIntroCard = ({ doctorData }) => {
 
-  const { image, specialty, availability, name, rating, reviews, fee } = data;
+  const {
+    image,
+    specialty,
+    availability,
+    name,
+    rating,
+    reviews,
+    fee
+  } = doctorData || data;
 
   // Get the next available day simply
   const nextAvailable = availability[0];
@@ -43,7 +51,8 @@ const DoctorIntroCard = () => {
                 <Avatar.Image
 
                   alt={name}
-                  src={image} />
+                  src={image} 
+                  className='object-cover'/>
                 <Avatar.Fallback>JD</Avatar.Fallback>
               </Avatar>
 

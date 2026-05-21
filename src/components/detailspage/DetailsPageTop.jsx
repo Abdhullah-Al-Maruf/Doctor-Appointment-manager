@@ -5,7 +5,7 @@ import {
   Clock,
   MessageSquare,
   CheckCircle2,
-  ChevronRight,
+
 } from "lucide-react";
 import Image from "next/image";
 
@@ -23,7 +23,7 @@ const StatCard = ({ icon, value, label, bgColor, iconColor }) => {
 };
 
 // --- Main ---
-const DetailsPageTop = () => {
+const DetailsPageTop = ({doctorData}) => {
   return (
     <section className="relative mb-12 w-full">
 
@@ -36,8 +36,8 @@ const DetailsPageTop = () => {
           <div className="glass-card p-3 rounded-[40px] shadow-2xl">
             <div className="aspect-[4/5] rounded-[32px] overflow-hidden relative">
               <Image
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuALU5jWIIrkfJgnk1ylmbGAmDyBNvphMclc-tvFkQi-TgngEN8uXeO6tqJt085qQ4XwwfUOJyaMS_0NZbhxcKf4ZCDKeVD46lqS3FbUZJg4svl6gVAZNAcfe2zYBqLnsXIc8PKbNqVzsvY9Nuc6FMte4nrxT5RdBVF74e3S1zT_Kp9To7fDo1XEC8wc3uXVSOzUWyjcAQbxBtps_j-pAgsATfX86RMVWwQ3fOrLj2wl0dETQ5vbOVXPQMQK06ERlD8tuGWcMXYhyLQc"
-                alt="Dr. Sarah Mitchell"
+                src={doctorData.image}
+                alt={doctorData.name}
                 fill
                 className="object-cover object-top"
                 priority
@@ -47,7 +47,7 @@ const DetailsPageTop = () => {
               <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
                 <div className="bg-black/30 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl text-white">
                   <p className="text-[11px] opacity-80 uppercase tracking-tighter">Based in</p>
-                  <p className="font-semibold text-sm">New York, NY</p>
+                  <p className="font-semibold text-sm">{doctorData.location}</p>
                 </div>
               </div>
             </div>
@@ -64,7 +64,7 @@ const DetailsPageTop = () => {
             </span>
             
             <h1 className="text-3xl sm:text-5xl lg:text-[56px] leading-[1.1] font-bold text-gray-900 mb-3">
-              Dr. Sarah Mitchell
+            {doctorData.name}
             </h1>
             
             <div className="flex items-center gap-2 text-sm sm:text-base md:text-lg text-gray-600 font-medium">
@@ -84,14 +84,14 @@ const DetailsPageTop = () => {
             />
             <StatCard 
               icon={<Star size={22} />} 
-              value="4.9" 
+              value={doctorData.rating} 
               label="Rating" 
               bgColor="bg-amber-500/10" 
               iconColor="text-amber-500" 
             />
             <StatCard 
               icon={<Clock size={22} />} 
-              value="12yr" 
+              value={doctorData.experience} 
               label="Experience" 
               bgColor="bg-blue-500/10" 
               iconColor="text-blue-600" 

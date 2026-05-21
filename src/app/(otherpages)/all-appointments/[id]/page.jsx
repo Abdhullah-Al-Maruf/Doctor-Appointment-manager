@@ -1,25 +1,24 @@
-"use client"
+import DoctorIntroCard from "@/components/cards/DoctorIntroCard";
+import DetailsPageTop from "@/components/detailspage/DetailsPageTop";
+import DetailsPageBottom from "@/components/detailspage/DetailsPageBottom";
 
-import DoctorIntroCard from '@/components/cards/DoctorIntroCard';
-import DetailsPageTop from '@/components/detailspage/DetailsPageTop';
-import DetailsPageBottom from '@/components/detailspage/DetailsPageBottom';
+import { getDoctorById } from "@/utils/GetData";
+import BackButton from "@/components/BackButton";
 
-import { useParams } from 'next/navigation';
+const DetailsPage = async ({ params }) => {
+  const { id } = await params;
+  const doctorData = await getDoctorById(id);
 
-
-const DetailsPage = ({ params }) => {
-  const { id } = useParams(params)
-  // todo: get the data from api
   // now this will fetch only that id data from the server
-
 
   return (
     <div className="pt-0 pb-12 w-full flex flex-col">
-      <DoctorIntroCard />
+      <DoctorIntroCard doctorData={doctorData} />
 
       <main className="pt-5 pb-16 px-4 md:px-12 max-w-[1280px] mx-auto relative z-10 w-full">
-        <DetailsPageTop />
-        <DetailsPageBottom />
+        <BackButton/>
+        <DetailsPageTop doctorData={doctorData} />
+        <DetailsPageBottom doctorData={doctorData} />
       </main>
     </div>
   );
