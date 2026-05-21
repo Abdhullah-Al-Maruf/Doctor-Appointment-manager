@@ -2,8 +2,8 @@
 
 > **Your Health, Our First Priority.**  
 > A secure, clinical-grade platform for seamless appointment booking and medical history management.
+<img width="1919" height="872" alt="Screenshot 2026-05-21 180127" src="https://github.com/user-attachments/assets/29395ed0-0c2d-4ee5-b597-6c39a73c6ec8" />
 
-![DocAppoint Preview](/preview.png) <!-- Replace with actual screenshot path -->
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-teal?style=for-the-badge)](#) <!-- Add live link here later -->
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
@@ -21,6 +21,8 @@ Trusted by **10K+ patients**, DocAppoint prioritizes user experience with a clea
 
 -   **Verified Specialist Network**: Access to 500+ vetted doctors across various specialties.
 -   **Seamless Booking**: Intuitive appointment scheduling with real-time availability.
+-   **secure Dashboard
+-   **Protected route for dasboard and details page
 -   **Secure Medical Records**: Clinical-grade security for managing personal health history.
 -   **24/7 Active Support**: Round-the-clock assistance and priority care monitoring.
 -   **High Trust Score**: Maintaining a 4.9/5 patient satisfaction rating.
