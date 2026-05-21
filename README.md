@@ -89,3 +89,15 @@ As a platform focused on health, the UI/UX design adheres to principles of **cal
 ---
 
 ## 📁 Project Structure
+
+docappoint/
+├── public/ # Static assets (images, icons)
+├── src/
+│ ├── components/ # Reusable UI components
+│ ├── pages/ # Next.js pages
+│ ├── styles/ # Global CSS and Tailwind config
+│ ├── utils/ # Helper functions
+│ └── services/ # API calls and business logic
+├── .env.local # Environment variables
+├── next.config.js # Next.js configuration
+└── README.md # This file
