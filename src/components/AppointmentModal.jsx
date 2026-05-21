@@ -50,7 +50,7 @@ export function AppointmentModal({ docName }) {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
 
-          <div className="relative w-full max-w-2xl bg-white/40 dark:bg-zinc-900/55 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/20 dark:border-zinc-700/20 max-h-[90vh] overflow-y-auto">
+          <div className="relative w-full max-w-2xl bg-white/35 dark:bg-zinc-900/55 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/20 dark:border-zinc-700/20 max-h-[90vh] overflow-y-auto">
             
             <button onClick={() => setIsOpen(false)} className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
               <X className="w-5 h-5 text-gray-500" />
