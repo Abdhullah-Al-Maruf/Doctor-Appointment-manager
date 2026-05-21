@@ -1,14 +1,17 @@
-import DoctorCard from "@/components/cards/DoctorCard";
+
+import SearchAndFilter from "@/components/SearchAndFilter";
 import { getDoctorsData } from "@/utils/GetData";
 
 const page = async () => {
+  // Fetch data on the server
   const doctorsData = await getDoctorsData();
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 mx-auto max-w-7xl'>
-      {doctorsData.map((doctor) => (
-        <DoctorCard key={doctor._id} data={doctor} />
-      ))}
+    <div className="min-h-screen bg-gray-50">
+      <h1 className="text-3xl font-bold text-center pt-8 mb-4">Find a Doctor</h1>
+      
+      {/* Pass the fetched data as props to the client component */}
+      <SearchAndFilter initialDoctors={doctorsData} />
     </div>
   );
 };

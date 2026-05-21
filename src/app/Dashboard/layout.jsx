@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
-// Removed global Loading component import
 import { authClient } from '@/lib/auth-client';
 import { toast } from 'react-toastify';
 import { 
@@ -23,6 +22,13 @@ const DashboardLayout = ({ children }) => {
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [pageLoading, setPageLoading] = useState(false);
+  
+  // 1. Use mounted state to prevent hydration mismatch for user data
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Show per-page spinner on route change
   useEffect(() => {
@@ -36,6 +42,7 @@ const DashboardLayout = ({ children }) => {
       <div className="w-12 h-12 border-4 border-teal-200 border-t-teal-600 rounded-full animate-spin"></div>
     </div>
   );
+
   const session = authClient.useSession();
   const user = session.data?.user;
 
@@ -60,6 +67,17 @@ const DashboardLayout = ({ children }) => {
     { name: 'My Bookings', href: '/dashboard/my-booking', icon: Calendar },
     { name: 'My Profile', href: '/dashboard/profile', icon: User },
   ];
+
+  // 2. Helper to safely get the first name only after mounting
+  const getFirstName = () => {
+    if (!mounted || !user?.name) return "User";
+    return user.name.split(' ')[0];
+  };
+
+  const getInitials = () => {
+    if (!mounted || !user?.name) return "U";
+    return user.name.trim().split(/\s+/)[0][0].toUpperCase();
+  };
 
   return (
     <div className="relative h-screen flex flex-col overflow-hidden text-slate-800">
@@ -177,22 +195,26 @@ const DashboardLayout = ({ children }) => {
                 </Link>
               </div>
             </div>
+            
+            {/* 3. Use the safe helper functions here */}
             <div className="hidden md:block">
               <h1 className="text-2xl font-bold text-slate-900">
-                Welcome back, {user?.name?.split(' ')[0]}
+                Welcome back, {getFirstName()}
               </h1>
               <p className="text-sm text-slate-500">
                 Your health overview is looking great today.
               </p>
             </div>
+
             <div className="flex items-center gap-4">
               <button className="w-10 h-10 flex items-center justify-center rounded-full bg-white/60 border border-white/30 shadow-xs hover:bg-white/80 transition-all cursor-pointer">
                 <Bell size={20} className="text-slate-600" />
               </button>
               <Link href="/dashboard/profile" className="w-10 h-10 rounded-full overflow-hidden border-2 border-teal-500 block">
                 <Avatar>
-                  <Avatar.Image alt={user?.name || "User"} src={user?.image || undefined} />
-                  <Avatar.Fallback>{user?.name ? user.name.trim().split(/\s+/)[0][0].toUpperCase() : "U"}</Avatar.Fallback>
+                  {/* 4. Use safe helpers for Avatar as well */}
+                  <Avatar.Image alt={mounted && user?.name ? user.name : "User"} src={mounted && user?.image ? user.image : undefined} />
+                  <Avatar.Fallback>{getInitials()}</Avatar.Fallback>
                 </Avatar>
               </Link>
             </div>
