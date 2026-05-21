@@ -23,7 +23,7 @@ const SearchAndFilter = ({ initialDoctors }) => {
         placeholder="Search doctor by name or specialty..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full md:w-96 px-4 py-3 border rounded-xl mb-6 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full  bg-white/60 px-4 py-3 border rounded-xl mb-6 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
 
       {/* Results Grid */}

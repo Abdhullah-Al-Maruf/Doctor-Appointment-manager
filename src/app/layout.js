@@ -8,8 +8,64 @@ const interFont = Inter({
 });
 
 export const metadata = {
-  title: "DocAppoint",
-  description: "Doctor appointment manager application",
+  title: {
+    default: "DocAppoint — Smart Doctor Appointment Manager",
+    template: "%s | DocAppoint",
+  },
+  description:
+    "Book appointments with top-rated doctors effortlessly. DocAppoint is a modern, HIPAA-compliant platform for managing your healthcare journey — from finding specialists to tracking bookings.",
+  keywords: [
+    "doctor appointment",
+    "book doctor online",
+    "healthcare",
+    "medical appointment",
+    "find doctor",
+    "specialist booking",
+    "DocAppoint",
+    "telehealth",
+    "online healthcare",
+  ],
+  authors: [{ name: "DocAppoint Team" }],
+  creator: "DocAppoint",
+  publisher: "DocAppoint",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "DocAppoint",
+    title: "DocAppoint — Smart Doctor Appointment Manager",
+    description:
+      "Book appointments with top-rated doctors effortlessly. A modern, HIPAA-compliant platform for managing your healthcare journey.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "DocAppoint — Smart Doctor Appointment Manager",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DocAppoint — Smart Doctor Appointment Manager",
+    description:
+      "Book appointments with top-rated doctors effortlessly. A modern healthcare platform.",
+    images: ["/og-image.png"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
 };
 
 export default function RootLayout({ children }) {

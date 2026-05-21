@@ -1,6 +1,12 @@
 import LeftSide from "@/components/LeftSide";
 import RightSide from "@/components/signupPageComponents/RightSide";
 
+export const metadata = {
+  title: "Create Your Account",
+  description:
+    "Join DocAppoint today. Create your free account to book appointments with top doctors, manage your healthcare, and access your medical records securely.",
+};
+
 const SignUpPage = () => {
   return (
     <div className="w-full flex items-center justify-center p-4 overflow-hidden relative">

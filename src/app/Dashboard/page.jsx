@@ -9,6 +9,16 @@ import {
   Star 
 } from 'lucide-react';
 
+export const metadata = {
+  title: "Dashboard — Your Health Overview",
+  description:
+    "View your health score, upcoming appointments, pending bookings, and personalized health tips. Your complete healthcare dashboard on DocAppoint.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 const Dashboard = () => {
   return (
     <div className="max-w-[1440px] mx-auto px-6 md:px-12 py-8 space-y-8 pb-24 md:pb-12 text-slate-800">

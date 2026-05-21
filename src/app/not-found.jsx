@@ -1,6 +1,16 @@
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Page Not Found — 404",
+  description:
+    "The page you are looking for may have been moved, deleted, or never existed. Return to the DocAppoint homepage to find what you need.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
+
 export default function NotFound() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
