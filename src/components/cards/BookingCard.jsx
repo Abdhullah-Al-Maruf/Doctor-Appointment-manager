@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Button, Chip, Separator } from '@heroui/react';
 import { TrashBin } from "@gravity-ui/icons";
+import { UpdateAppointmentModal } from "../UpdateAppointmentModal";
 
 // Helper to format date nicely
 const formatDate = (dateString) => {
@@ -66,7 +67,7 @@ const BookingCard = ({ booking }) => {
               </div>
               <div>
                 <p className="text-lg font-bold text-gray-900 leading-tight">{doctorName}</p>
-                <p className="text-sm text-gray-500">General Physician</p> {/* Add specialty if available in data */}
+               
               </div>
             </div>
           </div>
@@ -120,15 +121,7 @@ const BookingCard = ({ booking }) => {
       {/* Right Section: Actions */}
       <div className="bg-white/20 sm:bg-transparent p-5 sm:p-6 sm:border-l border-gray-100 flex flex-col justify-center sm:w-auto min-w-[160px] gap-5">
         <div className="flex flex-col gap-3 w-full">
-          <Button 
-          
-            color="primary"
-            className="w-full bg-transparent border border-teal-700 text-teal-900 font-medium shadow-none"
-            radius="lg"
-          
-          >
-           <Edit/> Update
-          </Button>
+     <UpdateAppointmentModal  id={_id} initialData={booking}/>
           
           <Button 
   
