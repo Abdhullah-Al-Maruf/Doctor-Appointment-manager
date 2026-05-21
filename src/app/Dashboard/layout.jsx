@@ -84,7 +84,7 @@ const DashboardLayout = ({ children }) => {
       {/* Dashboard Layout Wrapper */}
       <div className="flex h-screen overflow-hidden">
         {/* Desktop Sidebar Navigation */}
-        <aside className="hidden md:flex flex-col w-72 backdrop-blur-md border-r border-white/20 z-40 bg-white/10">
+        <aside className="hidden md:flex flex-col w-72 backdrop-blur-md border-r border-white/50 z-40 bg-white/30">
           <div className="p-8">
             <Link href="/" className="text-2xl font-bold text-slate-900 tracking-tight">
               DocAppoint
