@@ -1,6 +1,8 @@
 "use client";
 
+import { deleteAppointment } from "@/utils/actions";
 import {AlertDialog, Button} from "@heroui/react";
+import { toast } from "react-toastify";
 
 export function DeleteModal({id,doctor}) {
 
@@ -9,6 +11,7 @@ export function DeleteModal({id,doctor}) {
     
       const handleDelete = async() => {
       try {
+
           await deleteAppointment(id);
           toast.success("Deleted successfully");
         } catch (error) {
@@ -36,7 +39,9 @@ export function DeleteModal({id,doctor}) {
               <Button slot="close" variant="tertiary">
                 Cancel
               </Button>
-              <Button slot="close" variant="danger">
+              <Button
+              onClick={handleDelete}
+              slot="close" variant="danger">
                 Delete Booking
               </Button>
             </AlertDialog.Footer>
