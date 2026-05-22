@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import { toast } from "react-toastify";
+import { authClient } from "@/lib/auth-client";
 
 export function AppointmentModal({ docName }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,13 +17,14 @@ export function AppointmentModal({ docName }) {
     // Add doctor name dynamically
     data.doctorName = docName;
     
-
     
     try {
+      const {data:tokenData}=await authClient.token();
       const response = await fetch('http://localhost:5000/appointments', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
         },
         body: JSON.stringify(data),
       });
