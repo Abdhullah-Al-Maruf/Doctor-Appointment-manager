@@ -5,12 +5,15 @@
 <img width="1919" height="872" alt="Screenshot 2026-05-21 180127" src="https://github.com/user-attachments/assets/29395ed0-0c2d-4ee5-b597-6c39a73c6ec8" />
 
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-teal?style=for-the-badge)](#) <!-- Add live link here later -->
+[![Live Demo](https://img.shields.io/badge/Live-Demo-teal?style=for-the-badge)](https://doctor-appointment-manager-beta.vercel.app) <!-- Add live link here later -->
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 [![UI/UX](https://img.shields.io/badge/Design-System-Figma-blue?style=for-the-badge)](#)
 
 ---
-
+or
+---
+Live Link:https://doctor-appointment-manager-beta.vercel.app
+---
 ## 🚀 Overview
 
 **DocAppoint** is a modern healthcare management solution designed to bridge the gap between patients and verified medical specialists. Built with a focus on trust, accessibility, and ease of use, the platform allows users to book appointments, view doctor profiles, and manage their health data in one secure environment.
