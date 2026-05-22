@@ -4,7 +4,10 @@ import DetailsPageBottom from "@/components/detailspage/DetailsPageBottom";
 
 import { getDoctorById } from "@/utils/GetData";
 import BackButton from "@/components/BackButton";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
+// this is for metadata of the page which is dynamic based on the doctor id
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const doctor = await getDoctorById(id);
@@ -26,9 +29,13 @@ export async function generateMetadata({ params }) {
     },
   };
 }
+// main details page component which will render the details of the doctor and also the booking section
+
 
 const DetailsPage = async ({ params }) => {
   const { id } = await params;
+
+
   const doctorData = await getDoctorById(id);
 
   // now this will fetch only that id data from the server
