@@ -1,65 +1,58 @@
 # 🏥 DocAppoint
 
-> **Your Health, Our First Priority.**  
-A secure, clinical-grade Doctor Appointment Booking System for seamless scheduling, doctor browsing, and patient management.
+> **Your Health, Our First Priority.**
+> A secure, clinical-grade Doctor Appointment Booking System for seamless scheduling, doctor browsing, and patient management.
 
-🌐 Live Site: https://doctor-appointment-manager-beta.vercel.app
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-0d9488?style=for-the-badge&logo=vercel)](https://doctor-appointment-manager-beta.vercel.app)
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)
 
 ---
 
 ## 📌 Overview
 
-**DocAppoint** is a modern full-stack healthcare appointment management platform designed to connect patients with verified doctors in an efficient and secure way. Users can explore doctors, view detailed profiles, book appointments, and manage their bookings through a protected dashboard.
+**DocAppoint** is a modern full-stack healthcare appointment management platform designed to connect patients with verified doctors efficiently and securely. Users can explore doctor profiles, book appointments in real time, and manage their bookings through a protected personal dashboard.
 
-This project simulates a real-world healthcare workflow with a strong focus on **security, usability, performance, and scalability**.
-
----
-
-## ✨ Key Features
-
-- 👨‍⚕️ Browse verified doctors with detailed profiles  
-- 📅 Real-time appointment booking system  
-- 🔐 Secure authentication (JWT / Better Auth)  
-- 🧑‍💻 Protected dashboard for users  
-- ✏️ Update and delete appointments (full CRUD operations)  
-- 🏥 Detailed doctor profile pages  
-- 🔍 Search appointments by doctor name  
-- 📱 Fully responsive design (mobile, tablet, desktop)  
-- ⚡ Fast, modern, and optimized user experience  
+This project simulates a real-world healthcare workflow with a strong emphasis on **security, usability, performance, and scalability**.
 
 ---
 
-## 🎨 UI/UX Design
+## ✨ Features
 
-- Clean, healthcare-focused interface  
-- Soft and calming color palette (teal, white, neutral tones)  
-- Consistent typography and spacing system  
-- Card-based layout for doctors and appointments  
-- Accessibility-friendly design approach  
-- Modern UX inspired by real healthcare platforms  
+| Feature | Description |
+|---|---|
+| 👨‍⚕️ Doctor Browsing | Explore verified doctors with detailed profiles and availability |
+| 📅 Real-Time Booking | Book appointments instantly with confirmation feedback |
+| 🔐 Secure Auth | JWT / Better Auth with Google and GitHub OAuth support |
+| 📊 Protected Dashboard | Manage personal bookings with full CRUD operations |
+| 🔍 Search | Filter appointments by doctor name |
+| 📱 Responsive | Fully optimized for mobile, tablet, and desktop |
+| ❗ Error Handling | Toast notifications, custom 404 page, safe API error handling |
+| 🔁 Smart Redirects | Redirects users back to intended page after login |
 
 ---
 
 ## 🧰 Tech Stack
 
 ### Frontend
-- Next.js
-- React.js
-- Tailwind CSS
+- Next.js — App Router, file-based routing, SSR/SSG
+- React.js — Component-driven UI
+- Tailwind CSS — Utility-first styling
 
 ### Backend
-- Node.js
-- Express.js
+- Node.js + Express.js — RESTful API server
 
 ### Database
-- MongoDB
+- MongoDB Atlas — Document-based data storage
 
 ### Authentication
-- JWT / Better Auth (Google or GitHub OAuth)
+- Better Auth — Session management, JWT
+- OAuth 2.0 — Google and GitHub login
 
 ### Deployment
-- Vercel (Frontend)
-- Render / Vercel (Backend)
+- Vercel — Frontend hosting
+- Render / Vercel — Backend hosting
 
 ---
 
@@ -69,96 +62,133 @@ This project simulates a real-world healthcare workflow with a strong focus on *
 docappoint/
 ├── public/
 ├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── app/
-│   ├── services/
-│   ├── utils/
-│   └── styles/
+│   ├── app/                  # Next.js App Router pages
+│   ├── components/           # Reusable UI components
+│   ├── services/             # API service functions
+│   ├── utils/                # Utility/helper functions
+│   └── styles/               # Global styles
 ├── server/
-│   ├── routes/
-│   ├── controllers/
-│   ├── models/
-│   └── middleware/
-├── .env.local
+│   ├── routes/               # Express route definitions
+│   ├── controllers/          # Business logic handlers
+│   ├── models/               # MongoDB Mongoose models
+│   └── middleware/           # Auth and validation middleware
+├── proxy.js                  # Next.js 16 route protection
+├── .env.local                # Environment variables
 ├── next.config.js
 └── README.md
-
-
+```
 
 ---
-⚙️ Installation & Setup
-1. Clone Repository
+
+## ⚙️ Installation and Setup
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/your-username/docappoint.git
 cd docappoint
-2. Install Dependencies
+```
+
+### 2. Install Dependencies
+
+```bash
 npm install
-3. Setup Environment Variables
+```
 
-Create a .env.local file:
+### 3. Configure Environment Variables
 
+Create a `.env.local` file in the project root:
+
+```env
 NEXT_PUBLIC_API_URL=http://localhost:5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
-4. Run Development Server
-npm run dev
-5. Open in Browser
-http://localhost:3000
----
+BETTER_AUTH_SECRET=your_better_auth_secret
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+```
 
----
-🧑‍⚕️ Core Modules
-🏠 Home Page
-Hero section with banner
-Top rated doctors
-Additional feature sections
-📋 Appointments Page
-View all appointments
-Search by doctor name
-Protected details navigation
-👨‍⚕️ Doctor Details Page
-Full doctor information
-Availability schedule
-Book appointment feature
-📝 Booking System
-Appointment form/modal
-Store data in MongoDB
-Success confirmation system
-📊 Dashboard (Protected)
-My Bookings
-View personal appointments
-Update appointment
-Delete appointment instantly
-My Profile
-View user details
-Update profile info
-Instant UI updates
-🔐 Authentication Flow
-Email/password authentication
-Google or GitHub OAuth support
-JWT/session-based security
-Protected routes
-Redirect to previous route after login
-📱 Responsive Design
-Mobile-first layout
-Tablet optimized UI
-Desktop full experience
-Consistent spacing system
-❗ Error Handling
-Custom 404 page
-Toast notifications for success/error
-No default browser alerts
-Safe API error handling
-🚀 Deployment
-Frontend: Vercel
-Backend: Render / Vercel
-Database: MongoDB Atlas
----
+### 4. Start Development Server
+
 ```bash
-👨‍💻 Author
+npm run dev
+```
 
-Md Maruf
-Full Stack Developer (MERN / Next.js)
+### 5. Open in Browser
 
+```
+http://localhost:3000
+```
 
 ---
+
+## 🧑‍⚕️ Core Modules
+
+### 🏠 Home Page
+- Hero banner section
+- Top-rated doctors showcase
+- Platform feature highlights
+
+### 📋 All Appointments
+- Public listing of all appointments
+- Search and filter by doctor name
+- Protected navigation to appointment details
+
+### 👨‍⚕️ Doctor Profile
+- Comprehensive doctor information
+- Availability schedule display
+- One-click appointment booking
+
+### 📝 Booking System
+- Appointment form with validation
+- Data persisted to MongoDB
+- Success/error toast notifications
+
+### 📊 Dashboard (Protected)
+- My Bookings — View, update, and delete personal appointments
+- My Profile — View and update user details with instant UI feedback
+
+### 🔐 Authentication
+- Email/password login and registration
+- Google and GitHub OAuth
+- JWT / session-based security
+- Protected routes via proxy.js
+- Callback URL redirect after login
+
+---
+
+## 🔒 Route Protection
+
+DocAppoint uses Next.js 16's `proxy.js` for route-level security:
+
+| Route | Access |
+|---|---|
+| `/all-appointments` | Public |
+| `/all-appointments/:path` | Requires authentication |
+| `/dashboard/:path` | Requires authentication |
+
+Unauthenticated users are redirected to `/signin` with a `callbackUrl` to restore their navigation intent after login.
+
+---
+
+## 🚀 Deployment
+
+| Layer | Platform |
+|---|---|
+| Frontend | Vercel |
+| Backend | Render / Vercel |
+| Database | MongoDB Atlas |
+
+---
+
+## 👨‍💻 Author
+
+**Md Maruf**
+Full Stack Developer — MERN / Next.js
+
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat&logo=github)](https://github.com/your-username)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-0d9488?style=flat&logo=vercel)](https://your-portfolio.com)
+
+---
+
+Built with ❤️ for better healthcare accessibility.
