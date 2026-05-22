@@ -4,17 +4,13 @@ import {
   Clock, 
   User, 
   Phone, 
-  Edit3, 
-  Trash2, 
-  Mail, 
-  Edit3Icon,
-  Edit
 } from "lucide-react";
 import { Button, Chip, Separator } from '@heroui/react';
 import { TrashBin } from "@gravity-ui/icons";
 import { UpdateAppointmentModal } from "../UpdateAppointmentModal";
 import { deleteAppointment } from "@/utils/actions";
 import { toast } from "react-toastify";
+import { DeleteModal } from "../DeleteModal";
 
 // Helper to format date nicely
 const formatDate = (dateString) => {
@@ -39,16 +35,6 @@ const BookingCard = ({ booking }) => {
   // Default status if not provided in API
   const status = booking.status || "Confirmed"; 
 
-// delete server action
-
-  const handleDelete = async() => {
-  try {
-      await deleteAppointment(_id);
-      toast.success("Deleted successfully");
-    } catch (error) {
-      toast.error("Delete failed");
-    }
-  }
   return (
     <div className="w-full bg-white/60 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col sm:flex-row group">
       
@@ -135,16 +121,7 @@ const BookingCard = ({ booking }) => {
         <div className="flex flex-col gap-3 w-full">
      <UpdateAppointmentModal  id={_id} initialData={booking}/>
           
-          <Button 
-          onClick={handleDelete}
-            variant="danger" 
-           
-            className="w-full bg-transparent text-red-500 border border-red-600 font-medium text-danger-600 hover:bg-danger-50/50"
-            radius="lg"
-         
-          >
-          <TrashBin/>  Delete
-          </Button>
+        <DeleteModal id={_id} doctor={doctorName} />
         </div>
       </div>
 
