@@ -19,7 +19,7 @@ const bookings = await getBookingsData();
     return (
         <div className='px-3'>
             {bookings.length > 0 ? (
-                <div className='grid gap-3 grid-cols-1 lg:grid-cols-2'>
+                <div className='grid gap-3 mt-2 grid-cols-1 lg:grid-cols-2'>
                     {bookings.map(bookings=><BookingCard key={bookings._id} booking={bookings}/>)}
                 </div>
             ) : (
