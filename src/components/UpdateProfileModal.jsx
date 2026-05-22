@@ -34,7 +34,10 @@ export function UpdateProfileModal({ isOpen = true, onClose, image, name }) {
     });
 
     if (onClose) onClose();
-    toast.success("Profile updated successfully!");
+    toast.success("Profile updated successfully!" , {
+      position: "top-center",
+      autoClose: 2000,
+    });
   };
  
   

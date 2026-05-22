@@ -20,7 +20,7 @@ export function AppointmentModal({ docName }) {
     
     try {
       const {data:tokenData}=await authClient.token();
-      const response = await fetch('http://localhost:5000/appointments', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -30,12 +30,18 @@ export function AppointmentModal({ docName }) {
       });
 
       if (response.ok) {
-      toast.success("Appointment booked successfully!");
+      toast.success("Appointment booked successfully!" , {
+      position: "top-center",
+      autoClose: 2000,
+    });
         setIsOpen(false);
         e.target.reset();
       }
     } catch (error) {
-      toast.error("Failed to book appointment.");
+      toast.error("Failed to book appointment.", {
+      position: "top-center",
+      autoClose: 2000,
+    });
     }
   };
 

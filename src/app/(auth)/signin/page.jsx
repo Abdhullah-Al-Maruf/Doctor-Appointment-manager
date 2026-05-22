@@ -46,7 +46,7 @@ function LoginForm() {
 
     toast.success("Login successful 🎉", {
       position: "top-center",
-      autoClose: 6000,
+      autoClose: 2000,
     });
 
     router.push(callbackUrl);

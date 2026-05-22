@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
 export const getDoctorsData = async () => {
-  const res = await fetch("http://localhost:5000/doctors");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors`);
   const data = await res.json();
   return data;
 };
@@ -14,7 +14,7 @@ export const getBookingsData = async () => {
     headers: await headers(),
   });
 
-  const res = await fetch("http://localhost:5000/appointments", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -29,7 +29,7 @@ export const getDoctorById = async (id) => {
     headers: await headers(),
   });
 
-  const res = await fetch(`http://localhost:5000/doctors/${id}`,{
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors/${id}`,{
 //    this is for sending the token in the header for authentication and will be go on server
     headers: {
       Authorization: `Bearer ${token}`,

@@ -104,7 +104,7 @@ const RightSide = () => {
 
       toast.success("Welcome! Account created successfully 🎉", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 2000,
       });
       // signout the user  for login
       await authClient.signOut();

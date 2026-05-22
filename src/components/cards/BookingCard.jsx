@@ -5,12 +5,12 @@ import {
   User, 
   Phone, 
 } from "lucide-react";
-import { Button, Chip, Separator } from '@heroui/react';
-import { TrashBin } from "@gravity-ui/icons";
+
 import { UpdateAppointmentModal } from "../UpdateAppointmentModal";
-import { deleteAppointment } from "@/utils/actions";
-import { toast } from "react-toastify";
+
+
 import { DeleteModal } from "../DeleteModal";
+import { Chip, Separator } from "@heroui/react";
 
 // Helper to format date nicely
 const formatDate = (dateString) => {

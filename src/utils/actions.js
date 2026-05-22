@@ -13,7 +13,8 @@ export async function updateAppointment(id, formData) {
 
   const updatedData = Object.fromEntries(formData.entries());
 
-  await fetch(`http://localhost:5000/appointments/${id}`, {
+ 
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -36,7 +37,7 @@ export async function deleteAppointment(id) {
     headers: await headers(),
   });
 
-  const res = await fetch(`http://localhost:5000/appointments/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,

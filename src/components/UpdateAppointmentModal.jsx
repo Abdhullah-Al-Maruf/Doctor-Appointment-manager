@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Edit, X } from "lucide-react";
 import { toast } from "react-toastify";
 import { updateAppointment } from "@/utils/actions";
+import { Button } from "@heroui/react";
 
 export function UpdateAppointmentModal({ id, initialData }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,22 +18,29 @@ export function UpdateAppointmentModal({ id, initialData }) {
 
         formData.append("doctorName", safeData.doctorName || "");
       await updateAppointment(id, formData);
-      toast.success("Appointment updated successfully!");
+      toast.success("Appointment updated successfully!" , {
+      position: "top-center",
+      autoClose: 2000,
+    });
       setIsOpen(false);
     } catch (error) {
       console.error(error);
-      toast.error("Update failed!");
+      toast.error("Update failed!" , {
+      position: "top-center",
+      autoClose: 2000,
+    });
     }
   };
 
   return (
     <>
-      <button
+      <Button
+      size="lg"
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-teal-600 text-white rounded-lg flex items-center gap-2 hover:bg-teal-700 transition"
+        className="px-7 py-2 bg-teal-600 text-white rounded-lg flex items-center gap-2 hover:bg-teal-700 transition"
       >
         <Edit size={18} /> Update
-      </button>
+      </Button>
 
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
