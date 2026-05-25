@@ -24,7 +24,9 @@ export default function Home() {
   return (
     <div>
       <SliderBanner />
+    
       <TopRatedDoctor/>
+      
       <WhyChooseUs/>
       <ReviewSection/>
       <Faq/>

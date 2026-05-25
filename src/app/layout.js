@@ -71,9 +71,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${interFont.className} h-full antialiased`}>
-      <body className="min-h-full flex flex-col relative">
-        {/* 1. The Image Layer */}
-        <div className="bg-fixed-medical" />
+      <head>
+        {/* Mobile viewport */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+      </head>
+      <body className="min-h-full flex flex-col relative overflow-y-auto">
+        {/* 1. Full‑screen background */}
+        <div className="bg-fullscreen" />
         <ToastContainer />
         {/* Navbar sits on top of background */}
         <Navbar />

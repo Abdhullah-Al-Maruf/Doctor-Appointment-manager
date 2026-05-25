@@ -22,8 +22,8 @@ import { authClient } from "@/lib/auth-client";
 
 function LoginForm() {
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  // const router = useRouter();
+  const callbackUr = searchParams.get("callbackUrl") || "/";
   const [isVisible, setIsVisible] = useState(false);
 
   const onSubmit = async (e) => {
@@ -34,6 +34,7 @@ function LoginForm() {
     const { data, error } = await authClient.signIn.email({
       email,
       password,
+      callbackURL:"/",
     });
 
     if (error) {
@@ -49,7 +50,7 @@ function LoginForm() {
       autoClose: 2000,
     });
 
-    router.push(callbackUrl);
+  
   
   };
 
@@ -57,7 +58,7 @@ function LoginForm() {
   const handleGoogle = async () => {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: callbackUrl,
+      callbackURL: callbackUr,
     });
   };
 

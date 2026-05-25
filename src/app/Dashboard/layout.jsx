@@ -59,6 +59,7 @@ const DashboardLayout = ({ children }) => {
     });
     await authClient.signOut();
     router.push('/');
+    router.refresh()
   };
 
   const navItems = [

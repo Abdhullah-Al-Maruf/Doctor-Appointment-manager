@@ -26,7 +26,7 @@ const DoctorCard = ({data}) => {
   // const isAvailableToday = true;
 
   return (
-    <div className="group relative w-full max-w-sm bg-white/30 rounded-3xl overflow-hidden border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300">
+    <div className="group relative w-full   bg-white/30 rounded-3xl overflow-hidden border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300">
       
       {/* Image Section */}
       <div className="relative h-64 w-full overflow-hidden">

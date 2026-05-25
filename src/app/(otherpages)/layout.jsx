@@ -13,7 +13,6 @@ const CommonLayout = ({ children }) => {
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
 
-  // Check initial entry status on mount
   useEffect(() => {
     setIsMounted(true);
     if (typeof window !== 'undefined' && window._hasEnteredSite) {
@@ -22,38 +21,32 @@ const CommonLayout = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    // Determine if this is a true initial load using window reference to handle layout remounts
     const isInitial = typeof window !== 'undefined' ? !window._hasEnteredSite : true;
     const isHomepage = pathname === '/';
 
-    // If we've already entered the site and the user goes back to the homepage, do not trigger loading
     if (isHomepage && !isInitial) {
       setShowLoader(false);
       setIsFadingOut(false);
       return;
     }
 
-    // Show loader on page entry / pathname change
     setShowLoader(true);
     setIsFadingOut(false);
-    
-    // Homepage initial entry gets 3 seconds, all other loads/transitions get 2.2 seconds (matching the 2-second progress bar)
+
     const totalDuration = (isInitial && isHomepage) ? 3000 : 2200;
     const fadeOutStart = (isInitial && isHomepage) ? 2700 : 2000;
 
-    // After fadeOutStart, start fade-out animation
     const fadeTimeout = setTimeout(() => {
       setIsFadingOut(true);
     }, fadeOutStart);
 
-    // After totalDuration, hide the loader completely
     const hideTimeout = setTimeout(() => {
       setShowLoader(false);
       setIsFadingOut(false);
       if (typeof window !== 'undefined') {
         window._hasEnteredSite = true;
       }
-      setIsInitialLoad(false); // Disable full-screen loader for future inner navigations
+      setIsInitialLoad(false);
     }, totalDuration);
 
     return () => {
@@ -65,11 +58,9 @@ const CommonLayout = ({ children }) => {
   const renderLoader = () => {
     if (!showLoader || !isMounted) return null;
 
-    // Full screen loader is ONLY for the homepage initial entrance
     const isFullScreenLoader = isInitialLoad && pathname === '/';
 
     if (isFullScreenLoader) {
-      // Use portal to render directly to document.body, fully covering the Navbar
       return createPortal(
         <div className={`fixed inset-0 z-[9999] transition-opacity duration-300 ${isFadingOut ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           <Loading isFullScreen={true} duration={2600} />
@@ -77,9 +68,12 @@ const CommonLayout = ({ children }) => {
         document.body
       );
     } else {
-      // Render inline under the main navbar
+      // ✅ Only change — top-16 replaced with CSS variable via style prop
       return (
-        <div className={`fixed top-16 bottom-0 inset-x-0 z-40 transition-opacity duration-300 ${isFadingOut ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+        <div
+          className={`fixed bottom-0 inset-x-0 z-40 transition-opacity duration-300 ${isFadingOut ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+          style={{ top: 'var(--navbar-height, 64px)' }}
+        >
           <Loading isFullScreen={false} duration={800} />
         </div>
       );
